@@ -8,5 +8,6 @@ namespace Console_BloodBowlManager.Objects
 {
     class Team
     {
+        public List<Player> Players { set; get; }
     }
 }
