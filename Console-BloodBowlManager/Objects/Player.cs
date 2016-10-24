@@ -8,6 +8,7 @@ namespace Console_BloodBowlManager.Objects
 {
     class Player
     {
+        public string TeamName { get; set; }
         public Positional Position { get; private set; }
         public string Name { get; private set; }
         public int Jersey { get; private set; }
