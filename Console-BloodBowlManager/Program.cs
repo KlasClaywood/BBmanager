@@ -14,7 +14,7 @@ namespace Console_BloodBowlManager
             Positional HumanLineman = new Positional("Lineman", "Human", null, 50, 6, 3, 3, 8, new string[] { "General" }, new string[] { "Strength", "Agility", "Passing" });
             Player playerone = new Player("Karl Huntsmann", HumanLineman, 8);
             Player playertwo = new Player("Henri Bowler", HumanLineman, 7);
-            List<Player> team1 = new List<Player>();
+            Team team1 = new Team("Nordland Patriots", 1);
             team1.Add(playerone);
             team1.Add(playertwo);
             foreach (var player in team1)
