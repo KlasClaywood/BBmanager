@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,7 +12,15 @@ namespace Console_BloodBowlManager.Objects
         public List<Player> Players { get; set; }
         public string Name { get; private set; }
         public int TeamValue { get; private set; }
+        public int ID { get; private set; }
 
+        public Team (string name, int id)
+        {
+            ID = id;
+            Name = name;
+            Players = new List<Player>();
+            TeamValue = 0;
+        }
 
         public IEnumerator<Player> GetEnumerator()
         {
@@ -20,7 +29,10 @@ namespace Console_BloodBowlManager.Objects
                 yield return player;
             }
         }
-
+        private IEnumerator GetEnumerator1()
+        {
+            return this.GetEnumerator();
+        }
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
         {
             throw new NotImplementedException();
