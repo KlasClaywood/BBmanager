@@ -32,5 +32,25 @@ namespace Console_BloodBowlManager.Objects
             NormalRoll = normals;
             DoubleRoll = doubles;
         }
+        
+        public static Positional GetPositional(string race, string position)
+        {
+            switch (race)
+	        {
+                case "Human":
+                    switch (position)
+	                {
+                        case "Lineman":
+                            return new Positional("Lineman", "Human", new string[0], 50, 6, 3, 3, 8, new string[] { "G" }, new string[] { "A", "P", "S" });
+                        case "Blitzer":
+                            return new Positional("Blitzer", "Human", new string[] { "Block" }, 90, 7, 3, 3, 8, new string[] { "G", "S" }, new string[] { "A", "P" });
+		                default:
+                            return null;
+	                }
+                    
+		        default:
+                    return null;
+	        }
+        }
     }
 }

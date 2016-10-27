@@ -42,7 +42,7 @@ namespace Console_BloodBowlManager.Objects
             }
             else Skills = new string[0];
         }
-        public string ToString()
+        public override string ToString()
         {
             return Name + " the " + Position.Race + " " + Position.Name;
         }

@@ -33,6 +33,7 @@ namespace Console_BloodBowlManager.Objects
         {
             return this.GetEnumerator();
         }
+
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
         {
             return this.GetEnumerator();
@@ -47,7 +48,7 @@ namespace Console_BloodBowlManager.Objects
 
         public void Clear()
         {
-            throw new NotImplementedException();
+            Players.Clear();
         }
 
         public bool Contains(Player item)
@@ -62,17 +63,17 @@ namespace Console_BloodBowlManager.Objects
 
         public int Count
         {
-            get { throw new NotImplementedException(); }
+            get { return Players.Count(); }
         }
 
         public bool IsReadOnly
         {
-            get { throw new NotImplementedException(); }
+            get { return false; }
         }
 
         public bool Remove(Player item)
         {
-            throw new NotImplementedException();
+            return Players.Remove(item);
         }
     }
 }
