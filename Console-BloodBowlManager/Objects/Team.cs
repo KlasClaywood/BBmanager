@@ -35,7 +35,7 @@ namespace Console_BloodBowlManager.Objects
         }
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
         {
-            throw new NotImplementedException();
+            return this.GetEnumerator();
         }
 
         public void Add(Player item)
