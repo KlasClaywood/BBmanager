@@ -44,7 +44,18 @@ namespace Console_BloodBowlManager.Objects
         }
         public override string ToString()
         {
-            return Name + " the " + Position.Race + " " + Position.Name;
+            return string.Format("TeamName:{0};Position:{1};Name:{2};Jersey:{3};MA:{4};ST:{5};AG:{6};AV:{7};SPP:{8};Skills:{9};Cost:{10}",
+                                  TeamName,    Position,    Name,    Jersey,    MA,    ST,    AG,    AV,    SPP, this.GetSkillsString(),    Cost);
+        }
+
+        private string GetSkillsString()
+        {
+            string svar = "";
+            foreach (string skill in Skills)
+            {
+                svar+= skill + ",";
+            }
+            return svar.TrimEnd(',');
         }
     }
 }

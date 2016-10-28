@@ -13,6 +13,7 @@ namespace Console_BloodBowlManager.Objects
         public string Name { get; private set; }
         public int TeamValue { get; private set; }
         public int ID { get; private set; }
+        public int[] Color { get; private set; }
 
         public Team (string name, int id)
         {
@@ -20,6 +21,15 @@ namespace Console_BloodBowlManager.Objects
             Name = name;
             Players = new List<Player>();
             TeamValue = 0;
+            Color = new int[] { 0, 0, 200 };
+        }
+        public Team (string name, int id, int[] rgb)
+        {
+            ID = id;
+            Name = name;
+            Players = new List<Player>();
+            TeamValue = 0;
+            Color = rgb;
         }
 
         public IEnumerator<Player> GetEnumerator()
