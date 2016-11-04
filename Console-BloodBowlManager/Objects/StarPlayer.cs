@@ -6,34 +6,19 @@ using System.Threading.Tasks;
 
 namespace Console_BloodBowlManager.Objects
 {
-    class Player :ICloneable
+    class StarPlayer : Player, ICloneable
     {
-        private Player player;
+        
 
-        public string TeamName { get; set; }
-        public Positional Position { get; private set; }
-        public string Name { get; private set; }
-        public int Jersey { get; private set; }
-        public int SPP { get; set; }
-        public int MA { get; set; }
-        public int ST { get; set; }
-        public int AG { get; set; }
-        public int AV { get; set; }
-        public int Cost { get; set; }
-        public string[] Skills { set; get; }
-        public double Rating { set; get; }
-
-        public Player(string name, Positional position, int jersey)
+        public StarPlayer(string name, Positional position, int jersey)
+            : base(name, position, jersey)
         {
-            Rating = 0.0;
-            Position = position;
-            Name = name;
-            Jersey = jersey;
-            MA = position.MA;
-            ST = position.ST;
-            AG = position.AG;
-            AV = position.AV;
-            SPP = 0;
+            
+            MA = position.MA +1;
+            ST = position.ST +1;
+            AG = position.AG +1;
+            AV = position.AV +1;
+            SPP = 120;
             Cost = position.Cost;
             if (position.Skills != null)
             {
@@ -47,33 +32,28 @@ namespace Console_BloodBowlManager.Objects
             else Skills = new string[0];
         }
 
-        protected Player(Player player)
+        protected StarPlayer(StarPlayer player) :base (player.Name, player.Position, player.Jersey)
         {
-            Rating = 0.0;
-            Positional position = player.Position;
-            string name = player.Name;
-            int jersey = player.Jersey;
-            Position = position;
-            Name = name;
-            Jersey = jersey;
-            MA = position.MA;
-            ST = position.ST;
-            AG = position.AG;
-            AV = position.AV;
-            SPP = 0;
-            Cost = position.Cost;
+
+            // TODO: Complete member initialization
+            MA = player.Position.MA + 1;
+            ST = player.Position.ST + 1;
+            AG = player.Position.AG + 1;
+            AV = player.Position.AV + 1;
+            SPP = 120;
+            Cost = player.Position.Cost;
             if (player.Skills != null)
             {
                 List<string> skilllista = new List<string>();
-                foreach (string skill in position.Skills)
+                foreach (string skill in player.Skills)
                 {
                     skilllista.Add(skill);
                 }
                 Skills = skilllista.ToArray();
             }
             else Skills = new string[0];
+       
         }
-
         public override string ToString()
         {
             return string.Format("TeamName:{0};Position:{1};Name:{2};Jersey:{3};MA:{4};ST:{5};AG:{6};AV:{7};SPP:{8};Skills:{9};Cost:{10}",
@@ -90,12 +70,15 @@ namespace Console_BloodBowlManager.Objects
             return svar.TrimEnd(',');
         }
 
-        public object Clone()
+        public StarPlayer Clone()
         {
-            return new Player(this);
+            return new StarPlayer(this);
         }
 
-        
+        public object Clone()
+        {
+            return new StarPlayer(this.Name, this.Position, this.Jersey, );
+        }
 
        
     }

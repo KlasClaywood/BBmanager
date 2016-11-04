@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Console_BloodBowlManager.Objects;
+using Console_BloodBowlManager.Matches;
 
 namespace Console_BloodBowlManager
 {
@@ -21,11 +22,11 @@ namespace Console_BloodBowlManager
 
 
             //Console.ForegroundColor = ToCCSmart(team1.Color);
-            /*foreach (var player in team1)
+            foreach (var player in team1)
             {
                 Console.WriteLine(player.ToString());
-            }*/
-            Console.WriteLine(playerone);
+            }
+            Console.WriteLine(Int32.MaxValue);
             //Console.Write("{0}{1}{2}", r, g, b);
 
             //Console.WriteLine();

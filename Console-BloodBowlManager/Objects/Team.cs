@@ -14,6 +14,7 @@ namespace Console_BloodBowlManager.Objects
         public int TeamValue { get; private set; }
         public int ID { get; private set; }
         public int[] Color { get; private set; }
+        public string PlayStyle { get; set; }
 
         public Team (string name, int id)
         {
@@ -22,6 +23,7 @@ namespace Console_BloodBowlManager.Objects
             Players = new List<Player>();
             TeamValue = 0;
             Color = new int[] { 0, 0, 200 };
+            PlayStyle = "";
         }
         public Team (string name, int id, int[] rgb)
         {
@@ -30,6 +32,25 @@ namespace Console_BloodBowlManager.Objects
             Players = new List<Player>();
             TeamValue = 0;
             Color = rgb;
+            PlayStyle = "";
+        }
+
+        protected Team(Team team)
+        {
+            // TODO: Complete member initialization
+            ID = team.ID;
+            Name = team.Name;
+            TeamValue = team.TeamValue;
+            for (int i = 0; i < 3; i += 1)
+            {
+                Color[i] = team.Color[i];
+            }
+            Players = new List<Player>();
+            foreach (var player in team.Players)
+            {
+                Players.Add(player.Clone() as Player);
+
+            }
         }
 
         public IEnumerator<Player> GetEnumerator()
@@ -54,6 +75,18 @@ namespace Console_BloodBowlManager.Objects
             Players.Add(item);
             TeamValue += item.Cost;
             item.TeamName = this.Name;
+            item.Rating = RatePlayer(item);
+        }
+
+        private double RatePlayer(Player item)
+        {
+            double rating = 0.0;
+            rating += item.MA + item.AV + item.AG*2 + item.ST*3;
+            if (item.Skills.Contains("Block"))
+            {
+                rating += 10;
+            }
+            return rating;
         }
 
         public void Clear()
@@ -84,6 +117,18 @@ namespace Console_BloodBowlManager.Objects
         public bool Remove(Player item)
         {
             return Players.Remove(item);
+        }
+
+        public object Clone()
+        {
+            return new Team(this);
+        }
+
+        public object[] getActivePlayers()
+        {
+
+            var query = Players.OrderBy(p => p.Rating).Take(11).ToArray();
+            return query;
         }
     }
 }
