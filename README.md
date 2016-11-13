@@ -7,7 +7,7 @@ PlayerDb, all the players in the league, TeamId to reach its team, PositionalId 
 TeamDb all the teams in the league
 AllPositionalsDb, every positional in the game
 
-Player1.Skills = AllSkills.Where(s => 
+    Player1.Skills = AllSkills.Where(s => 
                          SkillsDb.GroupBy(p => p.PlayerId)
                         .First(g => g.Key == Player1.Id)
                         .Select(sp => sp.SkillId)
